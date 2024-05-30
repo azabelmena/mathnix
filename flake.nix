@@ -41,6 +41,7 @@ in
         ];
 
         flint = pkgs.callPackage ./derivations/flint.nix {};
+        ldpc = pkgs.callPackage ./derivations/ldpc.nix {};
 
         NIX_CFLAGS_COMPILE = ''
           -O3
