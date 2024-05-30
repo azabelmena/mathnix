@@ -42,6 +42,7 @@ in
 
         flint = pkgs.callPackage ./derivations/flint.nix {};
         ldpc = pkgs.callPackage ./derivations/ldpc.nix {};
+        macaulay2 = pkgs.callPackage ./derivations/macaulay2.nix {};
 
         NIX_CFLAGS_COMPILE = ''
           -O3
