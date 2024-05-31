@@ -3,7 +3,7 @@
   description = "Nix Flakes for Mathematics";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/release-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/release-24.05";
 };
 
 outputs = { self, nixpkgs }:
@@ -13,8 +13,6 @@ let
 
 in
   {
-    packages.${system}.default = ( import ./derivations/flint2.nix { inherit pkgs ; } );
-
     devShells.${system} = {
       ffal = pkgs.mkShell{
         name = "FFAL";
@@ -22,34 +20,34 @@ in
 
         nativeBuildInputs = with pkgs; [
           autoconf
-          openblas
-          ntl
           automake
           coreutils
+          flint3
           gcc
           gdb
           gettext
-          openblas
-          ntl
           glibc
           gmp
           gnumake
           libtool
           mpfr
+          ntl
+          ntl
+          openblas
+          openblas
           python3
           sage
+          singular
         ];
 
-        flint = pkgs.callPackage ./derivations/flint.nix {};
         ldpc = pkgs.callPackage ./derivations/ldpc.nix {};
         macaulay2 = pkgs.callPackage ./derivations/macaulay2.nix {};
 
         NIX_CFLAGS_COMPILE = ''
           -O3
+          -lflint
           -lgmp
           -lmpfr
-          -I${pkgs.callPackage ./derivations/flint.nix {}}/include/
-          -L${pkgs.callPackage ./derivations/flint.nix {}}/lib/
         '';
       };
     };
