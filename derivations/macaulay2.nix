@@ -12,50 +12,48 @@ pkgs.stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = with pkgs; [
-    autoconf
-      automake
-      bison
-      curl
-      gcc
-      gfortran
-      git
-      gmp
-      gnumake
-      libffi
-      libtool
-      libxml2
-      lzma
-      mpfr
-      pkg-config
-      wget
+    autoreconfHook
+    emacs
+    bison
+    curl
+    gcc
+    gfortran
+    git
+    gmp
+    gnumake
+    libffi
+    libtool
+    libxml2
+    lzma
+    mpfr
+    pkg-config
+    wget
   ];
 
   buildInputs = with pkgs; [
     blas
-      boehmgc
-      boost
-      eigen
-      flint
-      givaro
-      ncurses
-      tbb
+    boehmgc
+    boost
+    eigen
+    flint
+    givaro
+    ncurses
+    tbb
   ];
+
+  autoreconfPhase = ''
+    cd M2/
+    make
+
+  '';
 
   configureFlags = [
     "--with-boost-libdir=${pkgs.boost}/lib"
     "--enable-downloads"
   ];
 
-  preConfigurePhase = ''
-    cd M2/
-
-    make
-  '';
-
-  buildPhase = ''
-    cd M2/
-
-    make
+  configurePhase = ''
+    ./configure $configureFlags
   '';
 
   doParallelBuild = true;

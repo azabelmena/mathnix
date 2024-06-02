@@ -4,44 +4,40 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/release-24.05";
+    macaulay.url = "github:alois31/nixpkgs/macaulay2";
 };
 
-outputs = { self, nixpkgs }:
+outputs = { self, nixpkgs, macaulay }:
 let
   system = "x86_64-linux";
   pkgs = nixpkgs.legacyPackages.${system};
-
+  m2 = macaulay.legacyPackages.${system};
 in
   {
+
     devShells.${system} = {
-      ffal = pkgs.mkShell{
-        name = "FFAL";
+      mathnix = pkgs.mkShell{
+        name = "MathNix";
 
-
-        nativeBuildInputs = with pkgs; [
-          autoconf
-          automake
-          coreutils
-          flint3
-          gcc
-          gdb
-          gettext
-          glibc
-          gmp
-          gnumake
-          libtool
-          mpfr
-          ntl
-          ntl
-          openblas
-          openblas
-          python3
-          sage
-          singular
+        nativeBuildInputs = [
+          pkgs.autoconf
+          pkgs.automake
+          pkgs.coreutils
+          pkgs.flint3
+          pkgs.gcc
+          pkgs.gdb
+          pkgs.gettext
+          pkgs.glibc
+          pkgs.gnumake
+          pkgs.libtool
+          pkgs.python3
+          pkgs.sage
+          pkgs.singular
+          m2.macaulay2
         ];
 
-        ldpc = pkgs.callPackage ./derivations/ldpc.nix {};
-        macaulay2 = pkgs.callPackage ./derivations/macaulay2.nix {};
+        LDPC_LIB = "${pkgs.callPackage ./derivations/ldpc.nix {} }/LDPC-library";
+        LDPC = "${pkgs.callPackage ./derivations/ldpc.nix {} }/LDPC-codes";
 
         NIX_CFLAGS_COMPILE = ''
           -O3

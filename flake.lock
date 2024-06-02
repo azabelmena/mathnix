@@ -1,12 +1,28 @@
 {
   "nodes": {
+    "macaulay": {
+      "locked": {
+        "lastModified": 1695487412,
+        "narHash": "sha256-QIs6KW0EtGoCyr7GmWimCEgnx66Sl14tq5LDlXZrgGM=",
+        "owner": "alois31",
+        "repo": "nixpkgs",
+        "rev": "33efe163d09fac3793e3fac43b463353563b594f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "alois31",
+        "ref": "macaulay2",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1717179513,
-        "narHash": "sha256-vboIEwIQojofItm2xGCdZCzW96U85l9nDW3ifMuAIdM=",
+        "lastModified": 1717352157,
+        "narHash": "sha256-hbBzucWOhwxt3QzeAyUojtD6/aHH81JssDfhFfmqOy0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "63dacb46bf939521bdc93981b4cbb7ecb58427a0",
+        "rev": "44f538ab12e2726af450877a5529f4fd88ddb0fb",
         "type": "github"
       },
       "original": {
@@ -18,6 +34,7 @@
     },
     "root": {
       "inputs": {
+        "macaulay": "macaulay",
         "nixpkgs": "nixpkgs"
       }
     }
