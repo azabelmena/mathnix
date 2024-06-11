@@ -41,6 +41,7 @@ in
 
         NIX_CFLAGS_COMPILE = ''
           -O3
+          -g
           -lflint
           -lgmp
           -lmpfr
