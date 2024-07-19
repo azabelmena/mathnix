@@ -10,6 +10,7 @@
 outputs = { self, nixpkgs, macaulay }:
 let
   system = "x86_64-linux";
+
   pkgs = nixpkgs.legacyPackages.${system};
   m2 = macaulay.legacyPackages.${system};
 in
