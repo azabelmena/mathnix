@@ -9,7 +9,7 @@
 
 outputs = { self, nixpkgs, macaulay }:
 let
-  system = "x86_64-linux";
+  system = "aarch64-darwin";
 
   pkgs = nixpkgs.legacyPackages.${system};
   m2 = macaulay.legacyPackages.${system};
