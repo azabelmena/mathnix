@@ -3,16 +3,14 @@
   description = "Nix Flakes for Mathematics";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/release-24.05";
-    macaulay.url = "github:alois31/nixpkgs/macaulay2";
+    nixpkgs.url = "github:azabelmena/nixpkgs/math";
 };
 
-outputs = { self, nixpkgs, macaulay }:
+outputs = { self, nixpkgs }:
 let
   system = "x86_64-linux";
 
   pkgs = nixpkgs.legacyPackages.${system};
-  m2 = macaulay.legacyPackages.${system};
 in
   {
 
@@ -34,7 +32,6 @@ in
           pkgs.python3
           pkgs.sage
           pkgs.singular
-          m2.macaulay2
         ];
 
         LDPC_LIB = "${pkgs.callPackage ./derivations/ldpc.nix {} }/LDPC-library";
