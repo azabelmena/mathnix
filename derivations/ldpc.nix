@@ -1,9 +1,12 @@
-{ pkgs ? import <nixpkgs> {} }:
+{
+  stdenv,
+  fetchFromGitHub
+}:
 
-pkgs.stdenv.mkDerivation rec {
+stdenv.mkDerivation rec {
   name = "LDPC";
 
-  src = pkgs.fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "shubhamchandak94";
     repo = "ProtographLDPC";
     rev = "0fe057a58d94a2c1f8599c6718e24a027113818c";
