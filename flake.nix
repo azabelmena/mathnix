@@ -3,7 +3,7 @@
   description = "Nix Flakes for Mathematics";
 
   inputs = {
-    nixpkgs.url = "github:azabelmena/nixpkgs/math";
+    nixpkgs.url = "github:NixOS/nixpkgs/release-24.11";
 };
 
 outputs = { self, nixpkgs }:
