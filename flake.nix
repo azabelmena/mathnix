@@ -37,6 +37,8 @@ in
         LDPC_LIB = "${pkgs.callPackage ./derivations/ldpc.nix {} }/LDPC-library";
         LDPC = "${pkgs.callPackage ./derivations/ldpc.nix {} }/LDPC-codes";
 
+        SAGEDOC = "${pkgs.sageWithDoc.doc}/share/doc/sage/html/en/index.html";
+
         NIX_CFLAGS_COMPILE = ''
           -O3
           -g
