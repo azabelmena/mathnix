@@ -30,7 +30,7 @@ in
           pkgs.gnumake
           pkgs.libtool
           pkgs.python3
-          pkgs.sage
+          pkgs.sageWithDoc
           pkgs.singular
         ];
 
