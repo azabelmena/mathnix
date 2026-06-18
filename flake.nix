@@ -3,7 +3,7 @@
   description = "Nix Flakes for Mathematics";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/release-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 };
 
 outputs = { self, nixpkgs }:
@@ -18,24 +18,25 @@ in
       mathnix = pkgs.mkShell{
         name = "MathNix";
 
-        nativeBuildInputs = [
-          pkgs.autoconf
-          pkgs.automake
-          pkgs.coreutils
-          pkgs.flint3
-          pkgs.gcc
-          pkgs.gdb
-          pkgs.gettext
-          pkgs.glibc
-          pkgs.gnumake
-          pkgs.libtool
-          pkgs.python3
-          pkgs.sageWithDoc
-          pkgs.singular
+        nativeBuildInputs = with pkgs; [
+          autoconf
+          automake
+          coreutils
+          flint
+          gcc
+          gdb
+          gettext
+          glibc
+          gnumake
+          libtool
+          macaulay2
+          python3
+          sageWithDoc
+          singular
         ];
 
-        LDPC_LIB = "${pkgs.callPackage ./derivations/ldpc.nix {} }/LDPC-library";
-        LDPC = "${pkgs.callPackage ./derivations/ldpc.nix {} }/LDPC-codes";
+        LDPC_LIB = "${pkgs.callPackage ./ldpc.nix {} }/LDPC-library";
+        LDPC = "${pkgs.callPackage ./ldpc.nix {} }/LDPC-codes";
 
         SAGEDOC = "${pkgs.sageWithDoc.doc}/share/doc/sage/html/en/index.html";
 
